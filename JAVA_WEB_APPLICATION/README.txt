@@ -13,13 +13,13 @@ Product Management
 Add new products
 View all products
 Filter products:
-Products with price ≤ 200
-Products with price ≥ 500
+Products with price <= 200
+Products with price >= 500
 User Management
 Register users (newsletter system)
 View all users (ADMIN only)
 Filter users:
-Users with age ≤ 35
+Users with age <= 35
 Users with age > 35
 Security
 Basic Authentication
