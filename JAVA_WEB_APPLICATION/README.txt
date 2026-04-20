@@ -76,7 +76,7 @@ Role: ADMIN
 Setup Instructions
 
 Clone the repository:
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/NIkola773/Java_Applications.git
 Configure database in application.properties:
 spring.datasource.url=jdbc:mariadb://localhost:3306/your_database
 spring.datasource.username=root
