@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+
+<body data-bs-theme="white">
+<i>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid" style="background-color: rgb(220, 220, 221);">
+    <a class="navbar-brand" href="#">Shop</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="index.html">Home</a>
+        </li>
+        
+      </ul>
+      <a href="checkout.html">
+      
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <h5>Checkout: </h5>
+        <li class="nav-item">
+          <img src="images/bag-shopping-solid.png" href="checkout.html" alt="" style=" width: 24px; height: auto;">
+        </li>
+      </ul>
+    </a>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search">
+        <button class="btn btn-outline-success">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container my-5">
+  <h1>Enter the product you want to buy:</h1>
+
+  <form onsubmit="sendProduct(event)">
+    <div class="mb-3">
+      <label class="form-label">Product name</label>
+      <input type="text" class="form-control" id="name">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Product price</label>
+      <input type="number" class="form-control" id="price">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <table class="table table-bordered border-primary">
+   <thead>
+    Our Products:
+  </thead>
+  <tbody>
+    <tr class="table-active" >
+      <th scope="row">1</th>
+      <td>Chair</td>
+      <td>Wooden</td>
+      <td class="table-active">100$</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Table</td>
+      <td>Marbel</td>
+      <td class="table-active">700$</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Bed</td>
+      <td>Metal Frame</td>
+      <td class="table-active">500$</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+ 
+<div class="container my-5">
+  <h2>Shoping Cart: </h2>
+  <div class="row justify-content-center g-4">
+
+    <div class="col-md-4 d-flex justify-content-center">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">All Products</h5>
+            <ul id="allprod"></ul>
+          <button class="btn btn-warning mt-2" onclick="getprod(event)">
+            Show All Products
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 d-flex justify-content-center">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Cheaper Products <=200$</h5>
+         <ul id="cheaperprod"></ul>
+          <button class="btn btn-warning mt-2" onclick="getCheaperProd(event)">
+            Show Cheaper Products
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 d-flex justify-content-center">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Expensive Products >=500$</h5>
+          <ul id="expprod"></ul>
+          <button class="btn btn-warning mt-2" onclick="getExpensiveProd(event)">
+            Show Expensive Products
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+<div class="container my-5">
+  <div id="carouselOne" class="carousel slide">
+    <div class="carousel-indicators">
+      <button data-bs-target="#carouselOne" data-bs-slide-to="0" class="active"></button>
+      <button data-bs-target="#carouselOne" data-bs-slide-to="1"></button>
+      <button data-bs-target="#carouselOne" data-bs-slide-to="2"></button>
+    </div>
+
+    <div class="carousel-inner rounded shadow">
+      <div class="carousel-item active">
+        <img src="images/caroline-badran-bmgF8O95BuU-unsplash.jpg" class="d-block w-100">
+      </div>
+      <div class="carousel-item">
+        <img src="images/franco-debartolo-v3E6teZ_KUM-unsplash.jpg" class="d-block w-100">
+      </div>
+      <div class="carousel-item">
+        <img src="images/caroline-badran-A2d7oJb8f9U-unsplash.jpg" class="d-block w-100">
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" data-bs-target="#carouselOne" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" data-bs-target="#carouselOne" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</div>
+</div>
+
+<div class="container my-5">
+  <div id="carouselTwo" class="carousel slide">
+    <div class="carousel-indicators">
+      <button data-bs-target="#carouselTwo" data-bs-slide-to="0" class="active"></button>
+      <button data-bs-target="#carouselTwo" data-bs-slide-to="1"></button>
+      <button data-bs-target="#carouselTwo" data-bs-slide-to="2"></button>
+    </div>
+
+    <div class="carousel-inner rounded shadow">
+      <div class="carousel-item active">
+        <img src="images/franco-debartolo-v3E6teZ_KUM-unsplash.jpg" class="d-block w-100">
+      </div>
+      <div class="carousel-item">
+        <img src="images/caroline-badran-bmgF8O95BuU-unsplash.jpg" class="d-block w-100">
+      </div>
+      <div class="carousel-item">
+        <img src="images/caroline-badran-A2d7oJb8f9U-unsplash.jpg" class="d-block w-100">
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" data-bs-target="#carouselTwo" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" data-bs-target="#carouselTwo" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+
+</div>
+</i>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const allprod = document.getElementById("allprod");
+const cheaperprod = document.getElementById("cheaperprod");
+const expprod = document.getElementById("expprod");
+function sendProduct(e) {
+  const name = document.getElementById('name').value;
+  const price2 = document.getElementById('price').value;
+  e.preventDefault();
+  fetch("http://localhost:8080/addProducts", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      product_name: name,
+      price: parseFloat(price2)
+    })
+  });
+}
+
+function getExpensiveProd(e) {
+  e.preventDefault();
+  fetch("http://localhost:8080/expensiveProducts")
+    .then(res => res.json())
+    .then(data => {
+    
+      expprod.innerHTML = "";
+      data.forEach(p => {
+        const li = document.createElement("li");
+        li.textContent = `${p.product_name} - ${p.price}`;
+        expprod.appendChild(li);
+      });
+    });
+}
+function getprod(e) {
+  e.preventDefault();
+  fetch("http://localhost:8080/products")
+    .then(res => res.json())
+    .then(data => {
+      allprod.innerHTML = "";
+      data.forEach(p => {
+        const li = document.createElement("li");
+        li.textContent = `${p.product_name} - ${p.price}`;
+        allprod.appendChild(li);
+      });
+    });
+}
+function getCheaperProd(e) {
+  e.preventDefault();
+  fetch("http://localhost:8080/cheapProducts")
+    .then(res => res.json())
+    .then(data => {
+      cheaperprod.innerHTML = "";
+      data.forEach(p => {
+        const li = document.createElement("li");
+        li.textContent = `${p.product_name} - ${p.price}`;
+        cheaperprod.appendChild(li);
+      });
+    });
+}
+</script>
+
+</body>
+</html>
