@@ -1,4 +1,5 @@
 package com.MyWebApp.Java_Web_App;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AppService {
+  
   @Autowired
   private JpaUserAddress usrAddrsRepo;
      @Autowired

@@ -4,11 +4,13 @@ Description
 
 This project is a full-stack web application built using Spring Boot, MariaDB, and JavaScript (Fetch API).
 It represents a simple online shop system where products and users can be managed, and also addresses of users fo later product shipping.
-
+I have also added an automatic email sending feature. It contains cors (Cross-Origin Resource Sharing) -
+for better security and controll. (it controlls what backend the frontend can call)
 The application includes role-based authentication using Spring Security.
 
 Features
 
+Email sending when you type your email in the newsletter
 Product Management
 Add new products
 View all products
@@ -81,6 +83,11 @@ Configure database in application.properties:
 spring.datasource.url=jdbc:mariadb://localhost:3306/your_database
 spring.datasource.username=root
 spring.datasource.password=your_password
+
+If you want to enable email sending, try setting env variables in the terminal:
+
+export MAIL_USERNAME="yourEmail@gmail.com"
+export MAIL_PASSWORD="your_password"
 
 Run the application:
 mvn spring-boot

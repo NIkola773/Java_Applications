@@ -80,7 +80,7 @@ canvas {
             <i class="fa fa-shopping-cart"></i> Shop
           </a>
         </li>
-
+ 
       </ul>
 
     </div>
@@ -287,7 +287,7 @@ window.addEventListener("resize", () => {
 <script>
 function sendUsr(e) {
     e.preventDefault();
-
+   
     fetch("http://localhost:8080/users/addUsers", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -296,6 +296,11 @@ function sendUsr(e) {
             email: document.getElementById("userEmail").value,
             age: Number(document.getElementById("usrage").value)
         })
+    });
+    fetch("http://localhost:8080/api/newsletter/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email:  document.getElementById("userEmail").value })
     });
 }
 </script>
