@@ -231,7 +231,7 @@ This project was created to improve skills in:
 
 Developed by Nikola Korac.
 
-GitHub: [https://github.com/yourusername](https://github.com/NIkola773)
+GitHub: [https://github.com/NIkola773](https://github.com/NIkola773)
 
 ---
 
