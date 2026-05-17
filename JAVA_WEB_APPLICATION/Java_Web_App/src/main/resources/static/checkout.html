@@ -209,76 +209,7 @@
 </i>  
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-  function sendAddrss(e) {
-    e.preventDefault();
-    const name1 = document.getElementById('validationServer01').value;
-    const email1 = document.getElementById('validationServerEmail').value;
-    const country1 = document.getElementById('validationServer03').value;
-     const street1 = document.getElementById('validationServer04').value;
-     const username1  = document.getElementById('validationServer05').value;
-     fetch("http://localhost:8080/address/addAddress", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name: name1,
-        country: country1,
-        street: street1,
-        email: email1,
-        username: username1
-      })
-     }) 
-  .then(async res => {
-  const text = await res.text();
-  console.log("STATUS:", res.status);
-  console.log("RESPONSE:", text);
-
-  if (!res.ok) {
-    throw new Error(text);
-  }
-
-  return text;
-})
-.then(data => {
-  console.log("User Saved:", data);
-})
-.catch(err => console.error(err));
-  }
-
-function sendProduct(e) {
-e.preventDefault();
-  const name = document.getElementById('name').value;
-   const email3 = document.getElementById('email').value;
-  const price2 = document.getElementById('price').value;
-   const username3 = document.getElementById('username1').value;
-  const ul = document.getElementById('productTable');
-  
-  fetch("http://localhost:8080/addProducts", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      emailUser: email3,
-      productName: name,
-      price: parseFloat(price2),
-      username: username3
-
-    })
-  })
-    .then( res => res.json())
-    .then(data => {
-
-
-      
-     let li2 = document.createElement('li');
-    li2.textContent = `${name}, price: ${price2}`;
-      ul.appendChild(li2);
-   
-});
-  }
-  
-
+<script src="frontend/app.js">
 </script>
 
 </body>
