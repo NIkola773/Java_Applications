@@ -200,64 +200,7 @@
 </i>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-  const allprod = document.getElementById("allprod");
-const cheaperprod = document.getElementById("cheaperprod");
-const expprod = document.getElementById("expprod");
-function sendProduct(e) {
-  const name = document.getElementById('name').value;
-  const price2 = document.getElementById('price').value;
-  e.preventDefault();
-  fetch("http://localhost:8080/addProducts", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      product_name: name,
-      price: parseFloat(price2)
-    })
-  });
-}
-
-function getExpensiveProd(e) {
-  e.preventDefault();
-  fetch("http://localhost:8080/expensiveProducts")
-    .then(res => res.json())
-    .then(data => {
-    
-      expprod.innerHTML = "";
-      data.forEach(p => {
-        const li = document.createElement("li");
-        li.textContent = `${p.product_name} - ${p.price}`;
-        expprod.appendChild(li);
-      });
-    });
-}
-function getprod(e) {
-  e.preventDefault();
-  fetch("http://localhost:8080/products")
-    .then(res => res.json())
-    .then(data => {
-      allprod.innerHTML = "";
-      data.forEach(p => {
-        const li = document.createElement("li");
-        li.textContent = `${p.product_name} - ${p.price}`;
-        allprod.appendChild(li);
-      });
-    });
-}
-function getCheaperProd(e) {
-  e.preventDefault();
-  fetch("http://localhost:8080/cheapProducts")
-    .then(res => res.json())
-    .then(data => {
-      cheaperprod.innerHTML = "";
-      data.forEach(p => {
-        const li = document.createElement("li");
-        li.textContent = `${p.product_name} - ${p.price}`;
-        cheaperprod.appendChild(li);
-      });
-    });
-}
+<script src="frontend/app.js">
 </script>
 
 </body>

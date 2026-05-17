@@ -1,9 +1,14 @@
 package com.MyWebApp.Java_Web_App;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Users {
@@ -13,6 +18,14 @@ public class Users {
     private String username;
     private String email;
     private int age;
+
+ @ManyToMany
+@JoinTable(
+    name = "users_products",           
+    joinColumns = @JoinColumn(name = "userId"),
+    inverseJoinColumns = @JoinColumn(name = "productId")
+)
+private List<Products> products;
     public Integer getUserId() {
         return userId;
     }
