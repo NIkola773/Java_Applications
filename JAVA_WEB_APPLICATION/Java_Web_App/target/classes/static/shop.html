@@ -14,11 +14,141 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+        <style>
+          /* navbar glass effect */
+.navbar {
+    backdrop-filter: blur(10px);
+    background-color: #44444480;
+}
+          /* MOBILE */
+@media (max-width: 991px) {
+
+    .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .hero-left {
+        order: 2;
+        padding: 3rem 1.5rem;
+        text-align: center;
+        align-items: center;
+    }
+
+    .hero-right {
+        order: 1;
+        min-height: 400px;
+    }
+
+    .hero-desc {
+        max-width: 100%;
+    }
+
+    .hero-btns {
+        justify-content: center;
+    }
+
+    .hero-right-overlay {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px;
+        text-align: center;
+    }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 576px) {
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-left {
+        padding: 2rem 1rem;
+    }
+
+    .hero-btns {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-primary-gold,
+    .btn-outline-gold {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-right {
+        min-height: 300px;
+    }
+}
+        </style>
 </head>
 
 <body data-bs-theme="white">
 <i>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+
+  <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+  <div class="container-fluid px-4">
+
+    <a class="navbar-brand text-white" href="index.html">
+      <i class="fa fa-home"></i> Furniture Shop
+    </a>
+
+    <!-- MOBILE BUTTON -->
+    <button class="navbar-toggler border-0 shadow-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item">
+          <a class="nav-link text-white" href="index.html">
+            <i class="fa fa-home"></i> Home
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-white" href="shop.html">
+            <i class="fa fa-shopping-cart"></i> Shop
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- <li class="nav-item">
+          <a class="nav-link active" href="index.html">Home</a>
+        </li> -->
+        
+      </ul>
+      <a href="checkout.html">
+      
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <h5>Checkout: </h5>
+        <li class="nav-item">
+          <img src="images/bag-shopping-solid.png" href="checkout.html" alt="" style=" width: 24px; height: auto;">
+        </li>
+      </ul>
+    </a>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search">
+        <button class="btn btn-outline-success">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid" style="background-color: rgb(220, 220, 221);">
     <a class="navbar-brand" href="#">Shop</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -48,10 +178,10 @@
       </form>
     </div>
   </div>
-</nav>
+</nav> -->
 
-<div class="container my-5">
-  <h1>Enter the product you want to buy:</h1>
+<div style="margin-top: 25px;" class="container my-5">
+  <h1 style="margin-top: 100px;">Enter the product you want to buy:</h1>
 
   <form onsubmit="sendProduct(event)">
     <div class="mb-3">
@@ -136,8 +266,112 @@
 
   </div>
 </div>
+<div class="container my-4">
+  <h4>Cart:</h4>
+  <ul id="cartList"></ul>
+  <p>Total: <span id="cartTotal">0$</span></p>
+</div>
+<div class="container my-5">
+  <h1>More Products:</h1>
+  <div class="row g-4">
 
-<div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img class="card-img-top" src="images/Screenshot 2026-06-04 123310.png" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Bookshelf</h5>
+          <p class="card-text">
+           Oak bookshelf, handcrafted with perfection.
+           Price: 600 $
+          </p>
+          <a href="#" onclick="addProductBookshelf(event)" class="btn btn-primary">Buy</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img class="card-img-top" src="images/Screenshot 2026-06-04 123228.png" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Metal Frame Bed</h5>
+          <p class="card-text">
+            Built with a strong metal frame for lasting stability and support, this bed features a modern, minimalist design that complements any bedroom. 
+            Easy to maintain and designed for everyday comfort.
+          </p>
+          <a href="#" onclick="addProductBed(event)" class="btn btn-primary">Buy</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img class="card-img-top" src="images/Screenshot 2026-06-04 123134.png" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Wooden Chair</h5>
+          <p class="card-text">
+            Crafted from high-quality wood, this chair combines durability with timeless design. 
+            Its sturdy construction and comfortable seating make it a perfect addition to dining rooms, offices, or living spaces.
+          </p>
+          <a href="#" onclick="addProductChair(event)" class="btn btn-primary">Buy</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+</div>
+
+<div class="container my-5">
+  <div class="row g-4">
+
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img class="card-img-top" src="images/Screenshot 2026-06-06 094709.png" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Wooden Bookshelf</h5>
+          <p class="card-text">
+                Oak bookshelf, handcrafted with perfection.
+          
+          </p>
+          <a onclick="addProductBookshelf(event)" href="#" class="btn btn-primary">Buy</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img class="card-img-top" src="images/Screenshot 2026-06-06 094648.png" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Grey Bed</h5>
+          <p class="card-text">
+           Built with a strong metal frame for lasting stability and support, this bed features a modern, minimalist design that complements any bedroom. 
+            Easy to maintain and designed for everyday comfort.
+          </p>
+          <a onclick="addProductBed(event)" href="#" class="btn btn-primary">Buy</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img class="card-img-top" src="images/Screenshot 2026-06-06 094632.png" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Wooden Chair</h5>
+          <p class="card-text">
+            Crafted from high-quality wood, this chair combines durability with timeless design. 
+            Its sturdy construction and comfortable seating make it a perfect addition to dining rooms, offices, or living spaces.
+          </p>
+          </p>
+          <a onclick="addProductChair(event)" href="#" class="btn btn-primary">Buy</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+</div>
+
+<!-- <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
 <div class="container my-5">
   <div id="carouselOne" class="carousel slide">
     <div class="carousel-indicators">
@@ -196,7 +430,7 @@
     </button>
   </div>
 
-</div>
+</div> -->
 </i>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 

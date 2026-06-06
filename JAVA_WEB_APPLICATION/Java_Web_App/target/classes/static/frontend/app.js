@@ -1,4 +1,7 @@
 "use strict";
+let cart = [];
+const cartList = document.getElementById("cartList");
+const cartTotal = document.getElementById("cartTotal");
 const username1 = document.getElementById("name");
 const email1 = document.getElementById("userEmail");
 const age1 = document.getElementById("usrage");
@@ -119,3 +122,71 @@ async function getCheaperProd(e) {
     });
 }
 ;
+function addToCart(orderName, priceAtPurchase) {
+    cart.push({ orderName, priceAtPurchase });
+    renderCart();
+}
+function clearCart() {
+    cart = [];
+    renderCart();
+}
+function renderCart() {
+    cartList.innerHTML = "";
+    if (cart.length === 0) {
+        const li = document.createElement("li");
+        li.textContent = "Cart is empty.";
+        cartList.appendChild(li);
+        cartTotal.textContent = "0$";
+        return;
+    }
+    let total = 0;
+    cart.forEach((item) => {
+        total += item.priceAtPurchase;
+        const li = document.createElement("li");
+        li.textContent = `${item.orderName} - ${item.priceAtPurchase}$`;
+        cartList.appendChild(li);
+    });
+    cartTotal.textContent = `${total}$`;
+}
+function addProductChair(e) {
+    e.preventDefault();
+    fetch("http://localhost:8080/addProducts", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            productName: "Wooden Chair",
+            price: 100
+        })
+    });
+    addToCart("Wooden Chair", 100);
+}
+function addProductBed(e) {
+    e.preventDefault();
+    fetch("http://localhost:8080/addProducts", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            productName: "Metal Frame Bed",
+            price: 500
+        })
+    });
+    addToCart("Metal Frame Bed", 500);
+}
+function addProductBookshelf(e) {
+    e.preventDefault();
+    fetch("http://localhost:8080/addProducts", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            productName: "Oak Bookshelf",
+            price: 700
+        })
+    });
+    addToCart("Bookshelf", 600);
+}

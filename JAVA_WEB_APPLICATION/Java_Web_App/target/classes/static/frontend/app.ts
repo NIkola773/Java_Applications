@@ -19,6 +19,16 @@ email: string;
 username: string;
 }
 
+interface OrderItems {
+  orderName: string;
+ 
+  priceAtPurchase: number;
+}
+
+let cart: OrderItems[] = [];
+
+const cartList = document.getElementById("cartList") as HTMLUListElement;
+const cartTotal = document.getElementById("cartTotal") as HTMLElement;
 const username1 = document.getElementById("name") as HTMLInputElement;
 const email1 = document.getElementById("userEmail") as HTMLInputElement;
 const age1 = document.getElementById("usrage") as HTMLInputElement;
@@ -175,3 +185,83 @@ async function getCheaperProd(e: SubmitEvent) {
         cheaperprod.appendChild(li);
       });
     };
+
+
+function addToCart(orderName: string, priceAtPurchase: number): void {
+    cart.push({ orderName, priceAtPurchase });
+    renderCart();
+}
+
+function clearCart(): void {
+    cart = [];
+    renderCart();
+}
+
+function renderCart(): void {
+    cartList.innerHTML = "";
+
+    if (cart.length === 0) {
+        const li = document.createElement("li");
+        li.textContent = "Cart is empty.";
+        cartList.appendChild(li);
+        cartTotal.textContent = "0$";
+        return;
+    }
+
+    let total = 0;
+
+    cart.forEach((item) => {
+        total += item.priceAtPurchase;
+        const li = document.createElement("li");
+        li.textContent = `${item.orderName} - ${item.priceAtPurchase}$`;
+        cartList.appendChild(li);
+    });
+
+    cartTotal.textContent = `${total}$`;
+}
+
+function addProductChair(e: MouseEvent): void {
+
+    e.preventDefault();
+    fetch("http://localhost:8080/addProducts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+            productName: "Wooden Chair",
+            price: 100
+      })
+    })
+    addToCart("Wooden Chair", 100);
+}
+
+function addProductBed(e: MouseEvent): void {
+    e.preventDefault();
+      fetch("http://localhost:8080/addProducts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+            productName: "Metal Frame Bed",
+            price: 500
+      })
+    })
+    addToCart("Metal Frame Bed", 500);
+}
+
+function addProductBookshelf(e: MouseEvent): void {
+    e.preventDefault();
+       fetch("http://localhost:8080/addProducts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+            productName: "Oak Bookshelf",
+            price: 700
+      })
+    })
+    addToCart("Bookshelf", 600);
+}
