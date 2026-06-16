@@ -3,11 +3,14 @@ package com.MyWebApp.Java_Web_App;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+
 
 @Entity
 public class Products {
@@ -20,6 +23,7 @@ public class Products {
      private String username;
      
 @ManyToMany(mappedBy = "products")
+@JsonIgnore
 private List<Users> users;
 
     public Integer getId() {

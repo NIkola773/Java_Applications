@@ -25,7 +25,7 @@ public class AppService {
 
         return repo.save(product);
     }
-    public void delProduct(int id) {
+    public void delProduct(Integer id) {
             repo.deleteById(id);
     }
       public List<String> get_product_name() { 
@@ -93,5 +93,8 @@ public class AppService {
     }
     public UserAddress addAddress(UserAddress uAddress) {
       return  usrAddrsRepo.save(uAddress);
+    }
+     public void delUser(Integer id) {
+        usrRepo.deleteById(id);
     }
 }

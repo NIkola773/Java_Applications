@@ -5,9 +5,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class AdminController {
+
+@GetMapping("/login")
+public String loginPage() {
+    return "redirect:/login.html";
+}
+
 @GetMapping("/adminPanel")
 public String adminPanel2() {
-    return "adminPanel";
+    return "redirect:/adminPanel.html";
 }
     
 }
+ 
