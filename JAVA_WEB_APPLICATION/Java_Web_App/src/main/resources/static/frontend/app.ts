@@ -57,6 +57,7 @@ async function sendUsr(e: Event): Promise<void> {
     const NewsletterData = await NewsletterResponse.json();
 }
 
+
 // Creates a new product and appends it to the on-page product list
 async function sendProduct(e: Event): Promise<void> {
     e.preventDefault();
@@ -110,6 +111,7 @@ async function sendAddrss(e: Event): Promise<void> {
         })
         .catch((err: Error) => console.error(err));
 }
+
 
 // Fetches and renders the list of expensive products
 async function getExpensiveProd(e: Event): Promise<void> {

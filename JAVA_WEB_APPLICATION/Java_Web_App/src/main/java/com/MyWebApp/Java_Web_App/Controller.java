@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +25,10 @@ public class Controller {
     public Products addProduct(@RequestBody Products prod) {
         return serv.addProduct(prod);
 
+    }
+    @PutMapping("/updateProduct/{id}")
+    public Products updateProduct(@PathVariable Integer id, @RequestBody Products prod) {
+        return serv.updateProduct(id, prod);
     }
    @GetMapping("/cheapProducts")
    public List<Products> getCheap() {
@@ -53,6 +58,10 @@ public class Controller {
         return serv.addUsers(user2);
 
     }
+    @PutMapping("/users/updateUser/{id}")
+    public Users updateUsr(@PathVariable Integer id, @RequestBody Users user2) {
+        return serv.updateUser(id, user2);
+    }
      @DeleteMapping("/users/deleteUser/{id}")
     public void deleteUser(@PathVariable Integer id) {
         serv.delUser(id);
@@ -60,6 +69,18 @@ public class Controller {
     @PostMapping("/address/addAddress")
     public UserAddress addAdr(@RequestBody UserAddress adrs) {
         return serv.addAddress(adrs);
+    }
+    @PutMapping("/address/updateAddress/{id}")
+    public UserAddress updateAdr(@PathVariable Integer id, @RequestBody UserAddress adrs) {
+        return serv.updateAddress(id, adrs);
+    }
+    @GetMapping("/address/allAddress")
+    public List<UserAddress> getAllAddr() {
+        return serv.getAllAddress();
+    }
+    @DeleteMapping("/address/deleteAddress/{id}")
+    public void deleteAddress(@PathVariable Integer id) {
+        serv.delAddress(id);
     }
        @DeleteMapping("/deleteProduct/{id}")
   public ResponseEntity<Void> deleteProduct(@PathVariable  Integer id) {

@@ -1,5 +1,7 @@
 "use strict";
+// In-memory cart state (not persisted until checkout)
 let cart = [];
+// DOM element references (cast to proper HTML types for TS type safety)
 const productUsername = document.getElementById("Username");
 const emailProduct = document.getElementById("Email");
 const cartList = document.getElementById("cartList");
@@ -15,6 +17,7 @@ const ul = document.getElementById("productTable");
 const allprod = document.getElementById("allprod");
 const cheaperprod = document.getElementById("cheaperprod");
 const expprod = document.getElementById("expprod");
+// Registers a new user, then subscribes them to the newsletter
 async function sendUsr(e) {
     e.preventDefault();
     const UserResponse = await fetch("http://localhost:8080/users/addUsers", {
@@ -34,6 +37,7 @@ async function sendUsr(e) {
     });
     const NewsletterData = await NewsletterResponse.json();
 }
+// Creates a new product and appends it to the on-page product list
 async function sendProduct(e) {
     e.preventDefault();
     const ProductResponse = await fetch("http://localhost:8080/addProducts", {
@@ -54,6 +58,7 @@ async function sendProduct(e) {
         console.log("error while sending product!");
     }
 }
+// Submits a shipping/billing address tied to a user
 async function sendAddrss(e) {
     e.preventDefault();
     const name1 = document.getElementById("validationServer01");
@@ -85,6 +90,7 @@ async function sendAddrss(e) {
     })
         .catch((err) => console.error(err));
 }
+// Fetches and renders the list of expensive products
 async function getExpensiveProd(e) {
     e.preventDefault();
     const response = await fetch("http://localhost:8080/expensiveProducts");
@@ -96,6 +102,7 @@ async function getExpensiveProd(e) {
         expprod.appendChild(li);
     });
 }
+// Fetches and renders all products
 async function getprod(e) {
     e.preventDefault();
     const response = await fetch("http://localhost:8080/products");
@@ -107,6 +114,7 @@ async function getprod(e) {
         allprod.appendChild(li);
     });
 }
+// Fetches and renders cheaper products
 async function getCheaperProd(e) {
     e.preventDefault();
     const response = await fetch("http://localhost:8080/cheapProducts");
@@ -118,14 +126,17 @@ async function getCheaperProd(e) {
         cheaperprod.appendChild(li);
     });
 }
+// Adds an item to the cart and refreshes the cart UI
 function addToCart(orderName, priceAtPurchase, productId) {
     cart.push({ orderName, priceAtPurchase, productId });
     renderCart();
 }
+// Empties the cart
 function clearCart() {
     cart = [];
     renderCart();
 }
+// Redraws the cart list and total based on current cart state
 function renderCart() {
     cartList.innerHTML = "";
     if (cart.length === 0) {
@@ -149,6 +160,7 @@ function renderCart() {
     });
     cartTotal.textContent = `${total}$`;
 }
+// Removes an item from the cart, deleting it server-side first if it has a productId
 async function removeFromCart(index, productId) {
     if (productId) {
         const res = await fetch(`http://localhost:8080/deleteProduct/${productId}`, {
@@ -163,6 +175,7 @@ async function removeFromCart(index, productId) {
     cart.splice(index, 1);
     renderCart();
 }
+// Quick-add handlers for predefined demo products
 function addProductChair(e) {
     e.preventDefault();
     fetch("http://localhost:8080/addProducts", {
@@ -193,6 +206,7 @@ function addProductBookshelf(e) {
         .then((res) => res.json())
         .then((data) => addToCart("Bookshelf", 600, data.id));
 }
+// Saves cart + user info to sessionStorage, then redirects to checkout page
 async function goToCheckout(e) {
     e.preventDefault();
     if (cart.length === 0) {

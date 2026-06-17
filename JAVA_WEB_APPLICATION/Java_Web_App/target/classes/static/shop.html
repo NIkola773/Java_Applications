@@ -16,10 +16,38 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
         <style>
+          body {
+    margin: 0;
+    background: rgb(224, 221, 221);
+    overflow-x: hidden;
+}
+/* make sections float above animation */
+.container, .row, .carousel, form {
+    position: relative;
+    z-index: 2;
+}
+/* icons spacing */
+.fa {
+    margin-right: 6px;
+}
+/* CANVAS BACKGROUND */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+/* content layer */
+.content {
+    position: relative;
+    z-index: 200;
+}
           /* navbar glass effect */
 .navbar {
     backdrop-filter: blur(10px);
     background-color: #44444480;
+     
 }
           /* MOBILE */
 @media (max-width: 991px) {
@@ -87,8 +115,14 @@
         </style>
 </head>
 
-<body data-bs-theme="white">
-<i>
+<body data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" tabindex="0">
+  <canvas id="bg"></canvas>
+
+
+
+
+<div class="content">
+<i> 
 
   <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
   <div class="container-fluid px-4">
@@ -127,9 +161,7 @@
   </div>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <!-- <li class="nav-item">
-          <a class="nav-link active" href="index.html">Home</a>
-        </li> -->
+      
         
       </ul>
       <a href="checkout.html">
@@ -148,37 +180,6 @@
     </div>
   </div>
 </nav>
-<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid" style="background-color: rgb(220, 220, 221);">
-    <a class="navbar-brand" href="#">Shop</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" href="index.html">Home</a>
-        </li>
-        
-      </ul>
-      <a href="checkout.html">
-      
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <h5>Checkout: </h5>
-        <li class="nav-item">
-          <img src="images/bag-shopping-solid.png" href="checkout.html" alt="" style=" width: 24px; height: auto;">
-        </li>
-      </ul>
-    </a>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search">
-        <button class="btn btn-outline-success">Search</button>
-      </form>
-    </div>
-  </div>
-</nav> -->
 
 <div style="margin-top: 25px;" class="container my-5">
   <h1 style="margin-top: 100px;">Enter the product you want to buy:</h1>
@@ -378,71 +379,85 @@
   
 </div>
 
-<!-- <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
-<div class="container my-5">
-  <div id="carouselOne" class="carousel slide">
-    <div class="carousel-indicators">
-      <button data-bs-target="#carouselOne" data-bs-slide-to="0" class="active"></button>
-      <button data-bs-target="#carouselOne" data-bs-slide-to="1"></button>
-      <button data-bs-target="#carouselOne" data-bs-slide-to="2"></button>
-    </div>
 
-    <div class="carousel-inner rounded shadow">
-      <div class="carousel-item active">
-        <img src="images/caroline-badran-bmgF8O95BuU-unsplash.jpg" class="d-block w-100">
-      </div>
-      <div class="carousel-item">
-        <img src="images/franco-debartolo-v3E6teZ_KUM-unsplash.jpg" class="d-block w-100">
-      </div>
-      <div class="carousel-item">
-        <img src="images/caroline-badran-A2d7oJb8f9U-unsplash.jpg" class="d-block w-100">
-      </div>
-    </div>
-
-    <button class="carousel-control-prev" data-bs-target="#carouselOne" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" data-bs-target="#carouselOne" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
-  </div>
-</div>
-</div>
-
-<div class="container my-5">
-  <div id="carouselTwo" class="carousel slide">
-    <div class="carousel-indicators">
-      <button data-bs-target="#carouselTwo" data-bs-slide-to="0" class="active"></button>
-      <button data-bs-target="#carouselTwo" data-bs-slide-to="1"></button>
-      <button data-bs-target="#carouselTwo" data-bs-slide-to="2"></button>
-    </div>
-
-    <div class="carousel-inner rounded shadow">
-      <div class="carousel-item active">
-        <img src="images/franco-debartolo-v3E6teZ_KUM-unsplash.jpg" class="d-block w-100">
-      </div>
-      <div class="carousel-item">
-        <img src="images/caroline-badran-bmgF8O95BuU-unsplash.jpg" class="d-block w-100">
-      </div>
-      <div class="carousel-item">
-        <img src="images/caroline-badran-A2d7oJb8f9U-unsplash.jpg" class="d-block w-100">
-      </div>
-    </div>
-
-    <button class="carousel-control-prev" data-bs-target="#carouselTwo" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" data-bs-target="#carouselTwo" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
-  </div>
-
-</div> -->
 </i>
+ </div> 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="frontend/app.js">
 </script>
+<script>
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
 
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+/* ONLY CYBER PARTICLES + WIRES */
+/* rain removed */
+
+let particles = [];
+
+for (let i = 0; i < 120; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        size: Math.random() * 2 + 1
+    });
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    /* particles */
+    ctx.fillStyle = "rgba(0,0,0,0.55)";
+
+    particles.forEach(p => {
+        ctx.fillRect(p.x, p.y, p.size, p.size);
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+    });
+
+    /* stronger cyber wires */
+    for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+
+            let dx = particles[i].x - particles[j].x;
+            let dy = particles[i].y - particles[j].y;
+            let dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 180) {
+                let alpha = 1 - dist / 180;
+
+                ctx.strokeStyle = `rgba(0,0,0,${alpha * 0.30})`;
+                ctx.lineWidth = 1.1;
+
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.stroke();
+            }
+        }
+    }
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+</script>
 </body>
 </html>
