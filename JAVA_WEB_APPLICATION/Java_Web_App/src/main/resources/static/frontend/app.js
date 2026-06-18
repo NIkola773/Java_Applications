@@ -218,12 +218,12 @@ async function goToCheckout(e) {
     sessionStorage.setItem("cart", JSON.stringify(cart));
     sessionStorage.setItem("username", usernameInput.value);
     sessionStorage.setItem("email", emailInput.value);
-    const response = await fetch("http://localhost:8080/addProducts", {
+    const response = await fetch("http://localhost:8080/users/addUsers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             username: usernameInput.value,
-            emailUser: emailInput.value
+            email: emailInput.value
         })
     });
     window.location.href = "checkout.html";
